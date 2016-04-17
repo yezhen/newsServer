@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leixin.dao.NewsDAO">
+	<resultMap id="NewsMap" type="com.leixin.model.News">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="pub_time" property="pub_time" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="findNewsByNewscategoryid" parameterType="java.lang.Integer"
+		resultMap="NewsMap">
+		select title,source,pub_time
+		from news where newscategoryid
+		=#{newscategoryid}
+	</select>
+	<select id="findNewsById" parameterType="java.lang.Integer"
+		resultMap="NewsMap">
+		select content from news where
+		id =#{id}
+	</select>
+
+</mapper>

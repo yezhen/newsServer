@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leixin.dao.NewsCollectionDAO">
+	<resultMap id="NewsCollection" type="com.leixin.model.NewsCollection">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="newsid" property="newsid" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime" jdbcType="VARCHAR" />
+		<result column="imagepath" property="imagepath" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="findNewsCollectionByUserId" parameterType="java.lang.Integer"
+		resultMap="NewsCollection">
+		select * from newscollection where
+		userid =#{userid}
+	</select>
+	<insert id="addNewsCollection" parameterType="NewsCollection"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		newscollection(newsid,userid,title,createtime,imagepath) values
+		(#{newsid}
+		,#{userid},#{title},#{createtime},#{imagepath})
+	</insert>
+
+	<select id="findNewsCollectionByNewsId" parameterType="java.lang.Integer"
+		resultMap="NewsCollection">
+		select * from newscollection where
+		newsid =#{newsid}
+	</select>
+</mapper>

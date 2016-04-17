@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leixin.dao.NewsCommentDAO">
+	<resultMap id="NewsComment" type="com.leixin.model.NewsComment">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="newsid" property="newsid" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime" jdbcType="VARCHAR" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="findNewsContentByNewsId" parameterType="java.lang.Integer"
+		resultMap="NewsComment">
+		select * from comment where
+		newsid =#{newsid}
+	</select>
+	<insert id="addContent" parameterType="NewsComment"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		comment(newsid,userid,content,createtime,count) values (#{newsid}
+		,#{userid},#{content},#{createtime},#{count})
+	</insert>
+</mapper>
