@@ -1,20 +1,17 @@
 
 package com.leixin.dao;
 
-import java.util.List;
-
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.leixin.model.News;
+import com.leixin.model.NewsImages;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, isolation = Isolation.DEFAULT)
-public interface NewsDAO {
-    List<News> findNewsByNewscategoryid(int newscategoryid);
+public interface NewsImagesDAO {
 
-    News findNewsById(int id);
-    
-    List<News> findNewsByNewsByPosition(int position);
+    NewsImages findNewsImageByNewsId(int newsId);
+
+    int insertNewsImages(NewsImages newsImages);// 插入图片和新闻
 
 }

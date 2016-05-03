@@ -10,5 +10,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="NewsImage" type="com.leixin.model.NewsImage" />
 		<typeAlias alias="NewsComment" type="com.leixin.model.NewsComment" />
 		<typeAlias alias="NewsCollection" type="com.leixin.model.NewsCollection" />
+		<typeAlias alias="NewsImages" type="com.leixin.model.NewsImages" />
 	</typeAliases>
 </configuration>

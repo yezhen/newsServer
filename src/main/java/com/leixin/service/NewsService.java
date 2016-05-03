@@ -9,5 +9,7 @@ public interface NewsService {
     List<News> findNewsByNewscategoryid(int newscategoryid);
 
     News findNewsById(int id);
+    
+    List<News> findNewsByNewsByPosition(int position);
 
 }

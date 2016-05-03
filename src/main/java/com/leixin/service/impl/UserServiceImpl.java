@@ -31,5 +31,15 @@ public class UserServiceImpl implements UserService{
         // TODO Auto-generated method stub
         return userDAO.findUserByNameAndPassword(user);
     }
+
+    public User findUserByPhone(User user) {
+        // TODO Auto-generated method stub
+        return userDAO.findUserByPhone(user);
+    }
+
+    public int updateUserByPassword(User user) {
+        // TODO Auto-generated method stub
+        return userDAO.updateUserByPassword(user);
+    }
  
 }

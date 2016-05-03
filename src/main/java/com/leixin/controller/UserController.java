@@ -15,7 +15,7 @@ import com.leixin.model.User;
 import com.leixin.service.UserService;
 
 /**
- * @author Administrator 0 注册 1 成功 2 用户存在
+ * @author Administrator 数字0 注册失败 数字1 代表成功 数字2 用户存在
  */
 @Controller
 public class UserController {
@@ -51,6 +51,23 @@ public class UserController {
         } else {
             msg = 1;
         }
+        map.put("user", tempUser);
+        map.put("msg", msg);
+        return map;
+    }
+
+    @RequestMapping(value = "findUserByPhone", method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> findUserByPhone(User user) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        User tempUser = userService.findUserByPhone(user);
+        System.out.println("user=" + user);
+        int msg = 0;
+        if (tempUser == null) {
+            msg = 0;
+        } else {
+            msg = 1;
+        }
+        map.put("user", tempUser);
         map.put("msg", msg);
         return map;
     }
@@ -61,7 +78,7 @@ public class UserController {
      * @param name
      * @return
      */
-    @RequestMapping(value = "addUser", method = RequestMethod.POST)
+    @RequestMapping(value = "addUser", method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> addUser(User user) {
         User tempUser = userService.findUser(user.getName());
         Map<String, Object> map = new HashMap<String, Object>();
@@ -78,6 +95,22 @@ public class UserController {
             }
         } else {
             msg = 2;
+        }
+        map.put("msg", msg);
+        return map;
+    }
+
+    @RequestMapping(value = "updateUserByPassword", method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> updateUserByPassword(User user) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int msg = 0;
+        int i = userService.updateUserByPassword(user);
+        System.out.println("i=" + i);
+        if (i == 1) {
+            msg = 1;
+            map.put("user", user);
+        } else {
+            msg = 0;
         }
         map.put("msg", msg);
         return map;

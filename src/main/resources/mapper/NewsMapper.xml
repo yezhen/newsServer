@@ -4,10 +4,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.leixin.dao.NewsDAO">
 	<resultMap id="NewsMap" type="com.leixin.model.News">
-		<id column="id" property="id" jdbcType="INTEGER" />
+	    
+		<result column="id" property="id" jdbcType="INTEGER" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="newstime" property="newstime" jdbcType="VARCHAR" />
 		<result column="pub_time" property="pub_time" jdbcType="INTEGER" />
 	</resultMap>
 
@@ -19,8 +22,12 @@
 	</select>
 	<select id="findNewsById" parameterType="java.lang.Integer"
 		resultMap="NewsMap">
-		select content from news where
+		select * from news where
 		id =#{id}
+	</select>
+	<select id="findNewsByNewsByPosition" parameterType="java.lang.Integer"
+		resultMap="NewsMap">
+		select id ,title,source,category,newstime from news LIMIT #{position},5
 	</select>
 
 </mapper>

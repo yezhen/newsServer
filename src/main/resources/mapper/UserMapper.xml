@@ -14,8 +14,8 @@
 
 	<insert id="insertUser" parameterType="User" useGeneratedKeys="true"
 		keyProperty="id">
-		insert into user(name,password) values (#{name}
-		,#{password})
+		insert into user(name,password,tel) values (#{name}
+		,#{password},#{tel})
 	</insert>
 
 	<select id="findUser" parameterType="java.lang.String"
@@ -24,7 +24,13 @@
 	</select>
 	<select id="findUserByNameAndPassword" parameterType="User"
 		resultMap="UserMap">
-		select * from user where name =#{name} and password=#{password}
+		select * from user where name =#{name} and
+		password=#{password}
 	</select>
-
+	<select id="findUserByPhone" parameterType="User" resultMap="UserMap">
+		select * from user where tel =#{tel}
+	</select>
+	<update id="updateUserByPassword" parameterType="User">
+		update user set password=#{password} where tel=#{tel}
+	</update>
 </mapper>

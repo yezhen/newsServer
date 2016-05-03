@@ -39,6 +39,7 @@ public class NewsController {
         return map;
     }
 
+    // http://localhost:8080/news/findNewsById?id=5
     @RequestMapping(value = "findNewsById", method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> findNewsById(int id) {
         News news = newsService.findNewsById(id);
@@ -50,6 +51,23 @@ public class NewsController {
         } else {
             msg = 1;
             map.put("news", news);
+        }
+        map.put("msg", msg);
+        return map;
+    }
+
+    // http://localhost:8080/news/findNewsByNewsByPosition?position=0
+    @RequestMapping(value = "findNewsByNewsByPosition", method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> findNewsByNewsByPosition(int position) {
+        List<News> listNews = newsService.findNewsByNewsByPosition(position);
+        Map<String, Object> map = new HashMap<String, Object>();
+        System.out.println("listNews=" + listNews);
+        int msg = 0;
+        if (listNews == null || listNews.size() <= 0) {
+            msg = 0;
+        } else {
+            msg = 1;
+            map.put("listNews", listNews);
         }
         map.put("msg", msg);
         return map;

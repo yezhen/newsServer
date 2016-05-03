@@ -14,4 +14,8 @@ public interface UserDAO {
     public User findUser(String name);
 
     public User findUserByNameAndPassword(User user);
+
+    public User findUserByPhone(User user);
+    
+    public int updateUserByPassword(User user);
 }

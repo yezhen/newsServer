@@ -25,4 +25,9 @@ public class NewsServiceImpl implements NewsService {
         return newsDAO.findNewsById(id);
     }
 
+    public List<News> findNewsByNewsByPosition(int position) {
+        // TODO Auto-generated method stub
+        return newsDAO.findNewsByNewsByPosition(position);
+    }
+
 }
